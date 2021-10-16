@@ -39,8 +39,8 @@ packageJSON.scripts = Object.assign(packageJSON.scripts, {
 fs.writeFileSync(path.join(projectRoot, "package.json"), JSON.stringify(packageJSON, null, "  "))
 
 // mv src/main.js to main.ts - note, we need to edit rollup.config.js for this too
-const beforeMainJSPath = path.join(projectRoot, "src", "main.js")
-const afterMainTSPath = path.join(projectRoot, "src", "main.ts")
+const beforeMainJSPath = path.join(projectRoot, "src", "index.js")
+const afterMainTSPath = path.join(projectRoot, "src", "index.ts")
 fs.renameSync(beforeMainJSPath, afterMainTSPath)
 
 // Switch the app.svelte file to use TS
@@ -60,7 +60,7 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';`)
 
 // Replace name of entry point
-rollupConfig = rollupConfig.replace(`'src/main.js'`, `'src/main.ts'`)
+rollupConfig = rollupConfig.replace(`'src/index.js'`, `'src/index.ts'`)
 
 // Add preprocessor
 rollupConfig = rollupConfig.replace(
